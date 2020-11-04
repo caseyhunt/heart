@@ -1,44 +1,29 @@
 /*
-  Smoothing
-
-  Reads repeatedly from an analog input, calculating a running average and
-  printing it to the computer. Keeps ten readings in an array and continually
-  averages them.
-
-  The circuit:
-  - analog sensor (potentiometer will do) attached to analog input 0
-
-  created 22 Apr 2007
-  by David A. Mellis  <dam@mellis.org>
-  modified 9 Apr 2012
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/Smoothing
+  Smoothing Heartbeat
+  This sketch is used to read the heartbeat only, with no servo motor attached
+  Use "Serial Plotter" to see your heartbeat!
+  Adapted from Smoothing Arduino Example Code
 */
 
 // Define the number of samples to keep track of. The higher the number, the
 // more the readings will be smoothed, but the slower the output will respond to
 // the input. Using a constant rather than a normal variable lets us use this
-// value to determine the size of the readings array.
-
-#include <Adafruit_CircuitPlayground.h>
+// value to determine the size of the readings array
 
 
-const int numReadings = 10;
+const int numReadings = 10;     //size of buffer for running average. Higher number = more smooth
 
 int readings[numReadings];      // the readings from the analog input
 int readIndex = 0;              // the index of the current reading
 int total = 0;                  // the running total
 int average = 0;                // the average
 
-const int numReadingsPD = 30;
+const int numReadingsPD = 30;       //size of buffer for peak detection. Higher number = less sensitive
 int readingsPD[numReadingsPD];      // the readings from the analog input for peak detection
 int readIndexPD = 0;              // the index of the current reading
 int totalPD = 0;                  // the running total
 int averagePD= 0;                // the average
-const int targetDiffPD = 60;             //the amount you want to peak detect
+const int targetDiffPD = 60;             //the amount you want to peak detect, higher number = bigger difference needed to show peak
 int diffPD = 0;                   //the actual difference measured
 
 int inputPin = 10;
@@ -54,10 +39,11 @@ void setup() {
 }
 
 void loop() {
-  
-  // send it to the computer as ASCII digits
-  //Serial.println(smooth());
-  Serial.println(peakDetect());
+ 
+  //pick to show either smooth() or peakDetect()
+  //smooth will show your actual readings, peakDetect should only show beats
+  Serial.println(smooth());
+  //Serial.println(peakDetect()); 
   delay(3);        // delay in between reads for stability
 }
 
