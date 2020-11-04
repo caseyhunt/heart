@@ -1,10 +1,7 @@
-/* Sweep
- by BARRAGAN <http://barraganstudio.com>
- This example code is in the public domain.
-
- modified 8 Nov 2013
- by Scott Fitzgerald
- http://www.arduino.cc/en/Tutorial/Sweep
+/* Sweep and Beat
+   This combines both the heartbeat sensor and sweeping servo to create a connected system
+   If you're having trouble getting this to work, try Sweep_ES and Smoothed_HR_Sensor individually first
+   Then, combine all the parts into the finished piece here!
 */
 
 
