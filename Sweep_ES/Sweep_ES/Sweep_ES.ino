@@ -1,10 +1,8 @@
-/* Sweep
- by BARRAGAN <http://barraganstudio.com>
- This example code is in the public domain.
-
- modified 8 Nov 2013
- by Scott Fitzgerald
- http://www.arduino.cc/en/Tutorial/Sweep
+/* Sweep Modified
+   Based on Arduino Sweep Example
+   Use this code to get your heart to beat with the servo motor
+   This code is not connected to the heartrate monitor
+   Change position maximum to give your heart a more or less pronounced beat
 */
 
 #include <Servo.h>
