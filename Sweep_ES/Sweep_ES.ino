@@ -10,22 +10,24 @@
 #include <Servo.h>
 
 Servo myservo;  // create servo object to control a servo
-// twelve servo objects can be created on most boards
 
 int pos = 0;    // variable to store the servo position
+
+
+int rate = 3;   //change this to make the heart beat faster or slower
 
 void setup() {
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
-  for (pos = 0; pos <= 0; pos += 1) { // goes from 0 degrees to 180 degrees
+  for (pos = 0; pos <= 40; pos += 1) { // goes from 0 degrees to 40 degrees
     // in steps of 1 degree
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(3);                       // waits 15ms for the servo to reach the position
+    delay(rate);                       // change this to make the heart beat faster or slower
   }
-  for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+  for (pos = 40; pos >= 0; pos -= 1) { // goes from 40 degrees to 0 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(3);                       // waits 15ms for the servo to reach the position
+    delay(rate);                       // change this to make the heart beat faster or slower
   }
 }
