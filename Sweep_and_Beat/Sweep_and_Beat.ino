@@ -34,9 +34,7 @@ int averagePD= 0;                // the average
 const int targetDiffPD = 40;             //the amount you want to peak detect,adjust this for your own system
 int diffPD = 0;                   //the actual difference measured
 
-int inputPin = 2;       //the pin with the hr monitor
-
-int pos = 0;    // variable to store the servo position
+int inputPin = 8;       //the pin with the hr monitor
 
 void setup() {
   Serial.begin(9600);
@@ -55,35 +53,16 @@ void setup() {
 
 void loop() {
 
-    myservo.write(0);              // tell servo to go to position in variable 'pos'
+    myservo.write(peakDetect());              // tell servo to go to position returned from peakDetect()
     //Serial.println(smooth());
     Serial.println(peakDetect());
-    delay(3);                       // waits 15ms for the servo to reach the position
+    delay(1);                       // waits to give everything time to move
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//void loop() {
-//  
-//  // send it to the computer as ASCII digits
-//  //Serial.println(smooth());
-//  Serial.println(peakDetect());
-//  delay(3);        // delay in between reads for stability
-//}
-
-
+//smoothed output from hr monitor
+//use serial plotter to see your heartrate!
 int smooth(){
     // subtract the last reading:
   total = total - readings[readIndex];
@@ -105,6 +84,10 @@ int smooth(){
   return average;
 }
 
+
+//peak detection that returns servo position
+//this should only return a value for heartbeats
+//if you're getting lots of noise or no signal, try configuring with targetDiffPD
 int peakDetect(){
     // subtract the last reading:
   totalPD = totalPD - readingsPD[readIndexPD];
@@ -135,6 +118,5 @@ int peakDetect(){
     delay(1);
   }else{
     return 0;
-  }
-  
+  } 
 }
